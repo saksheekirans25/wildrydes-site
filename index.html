@@ -11,6 +11,43 @@
 
   <script src="js/vendor/modernizr.js"></script>
 </head>
+<style> /* Style the modal */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+  }
+  
+  /* Modal content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* Close button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  </style>
 <body class="page-home">
 
   <header class="site-header">
@@ -21,6 +58,7 @@
         <li><a href="signin.html">Sign In</a></li>
         <li><a href="register.html">Get Registered to fly!</a></li>
         <li><a href="unicorns.html">Meet the Unicorns</a></li>
+        <li><a href="#" id="colorContrastLink">Color Contrast</a></li>
         <li><a href="investors.html">Investors &amp; Board of Directors</a></li>
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="apply.html">Apply</a></li>
@@ -28,7 +66,7 @@
     </nav>
     <button type="button" class="btn-menu"><span>Menu</span></button>
     <a class="home-button" href="/register.html">Giddy Up!</a>
-    <button id="voiceNavigationButton">Activate Voice Navigation</button>
+    
 
   </header>
 
@@ -160,8 +198,50 @@
   </footer>
 
   <script src="js/vendor.js"></script>
-  <script src="polly.js"></script>
+  <script src="color.js"></script>
 
   <script src="js/main.js"></script>
+  <script>
+
+// Function to handle color contrast functionality
+document.getElementById('colorContrastLink').addEventListener('click', function() {
+    // Show the modal dialog for color contrast
+    var modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Color Contrast</h2>
+            <div>
+                <label for="backgroundColor">Background Color:</label>
+                <input type="color" id="backgroundColor">
+            </div>
+            <div>
+                <label for="textColor">Text Color:</label>
+                <input type="color" id="textColor">
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+
+    var closeButton = modal.querySelector('.close');
+    closeButton.addEventListener('click', function() {
+        document.body.removeChild(modal);
+    });
+
+    var backgroundColorInput = modal.querySelector('#backgroundColor');
+    var textColorInput = modal.querySelector('#textColor');
+
+    backgroundColorInput.addEventListener('input', function() {
+        document.body.style.backgroundColor = backgroundColorInput.value;
+    });
+
+    textColorInput.addEventListener('input', function() {
+        document.body.style.color = textColorInput.value;
+    });
+});
+
+  </script>
+
 </body>
 </html>
