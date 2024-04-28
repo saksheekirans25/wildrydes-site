@@ -1,0 +1,15 @@
+{
+  "name": "wildrydes-site",
+  "version": "1.0.0",
+  "description": "[Repo for the Project](https://github.com/gtjames/Unicorn-OG) [Conifg file where all the magic is stored](./js/config.js)",
+  "main": "polly.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.1608.0"
+  }
+}
