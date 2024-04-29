@@ -11,65 +11,33 @@
 
   <script src="js/vendor/modernizr.js"></script>
 </head>
-<style> /* Style the modal */
-  .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1000; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
-  }
-  
-  /* Modal content */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%; /* Could be more or less, depending on screen size */
-  }
-  
-  /* Close button */
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  </style>
+
 <body class="page-home">
 
   <header class="site-header">
     <h1 class="title">Wild Rydes</h1>
+    
     <nav class="site-nav">
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="signin.html">Sign In</a></li>
         <li><a href="register.html">Get Registered to fly!</a></li>
         <li><a href="unicorns.html">Meet the Unicorns</a></li>
-        <li><a href="#" id="colorContrastLink">Color Contrast</a></li>
         <li><a href="investors.html">Investors &amp; Board of Directors</a></li>
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="apply.html">Apply</a></li>
+        
       </ul>
     </nav>
+    
     <button type="button" class="btn-menu"><span>Menu</span></button>
     <a class="home-button" href="/register.html">Giddy Up!</a>
     
+    
+    
 
   </header>
-
+  
   <section class="home-about">
     <div class="row column large-9 xlarge-6 xxlarge-4">
       <h2 class="section-title">How Does This Work?</h2>
@@ -174,6 +142,21 @@
     </div>
   </section>
 
+  <!-- Button to adjust page color -->
+  <button id="adjust-color-button">Adjust Page Color</button>
+
+  <!-- Sliders for brightness, contrast, and saturation (Initially hidden) -->
+  <div id="color-sliders" style="display: none;">
+    <label for="brightness-slider">Brightness</label>
+    <input id="brightness-slider" type="range" min="0" max="200" value="100" step="1">
+
+    <label for="contrast-slider">Contrast</label>
+    <input id="contrast-slider" type="range" min="0" max="200" value="100" step="1">
+
+    <label for="saturation-slider">Saturation</label>
+    <input id="saturation-slider" type="range" min="0" max="200" value="100" step="1">
+  </div>
+
   <footer class="site-footer">
     <div class="row column">
       <nav class="footer-nav">
@@ -197,51 +180,40 @@
     </div>
   </footer>
 
+
+  <script>
+    // Function to toggle visibility of color sliders
+    function toggleColorSliders() {
+      var slidersDiv = document.getElementById('color-sliders');
+
+      // Toggle display property
+      if (slidersDiv.style.display === 'none') {
+        slidersDiv.style.display = 'block';
+      } else {
+        slidersDiv.style.display = 'none';
+      }
+    }
+
+    // JavaScript function to apply adjustments
+    function applyAdjustments() {
+      var brightnessValue = document.getElementById('brightness-slider').value;
+      var contrastValue = document.getElementById('contrast-slider').value;
+      var saturationValue = document.getElementById('saturation-slider').value;
+
+      // Apply adjustments to body
+      document.body.style.filter = 'brightness(' + brightnessValue + '%) contrast(' + contrastValue + '%) saturate(' + saturationValue + '%)';
+    }
+
+    // Event listener for adjust color button
+    document.getElementById('adjust-color-button').addEventListener('click', toggleColorSliders);
+
+    // Event listeners for sliders
+    document.getElementById('brightness-slider').addEventListener('input', applyAdjustments);
+    document.getElementById('contrast-slider').addEventListener('input', applyAdjustments);
+    document.getElementById('saturation-slider').addEventListener('input', applyAdjustments);
+  </script>
   <script src="js/vendor.js"></script>
-  <script src="color.js"></script>
 
   <script src="js/main.js"></script>
-  <script>
-
-// Function to handle color contrast functionality
-document.getElementById('colorContrastLink').addEventListener('click', function() {
-    // Show the modal dialog for color contrast
-    var modal = document.createElement('div');
-    modal.className = 'modal';
-    modal.innerHTML = `
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Color Contrast</h2>
-            <div>
-                <label for="backgroundColor">Background Color:</label>
-                <input type="color" id="backgroundColor">
-            </div>
-            <div>
-                <label for="textColor">Text Color:</label>
-                <input type="color" id="textColor">
-            </div>
-        </div>
-    `;
-    document.body.appendChild(modal);
-
-    var closeButton = modal.querySelector('.close');
-    closeButton.addEventListener('click', function() {
-        document.body.removeChild(modal);
-    });
-
-    var backgroundColorInput = modal.querySelector('#backgroundColor');
-    var textColorInput = modal.querySelector('#textColor');
-
-    backgroundColorInput.addEventListener('input', function() {
-        document.body.style.backgroundColor = backgroundColorInput.value;
-    });
-
-    textColorInput.addEventListener('input', function() {
-        document.body.style.color = textColorInput.value;
-    });
-});
-
-  </script>
-
 </body>
 </html>
