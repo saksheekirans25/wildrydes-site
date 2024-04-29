@@ -117,37 +117,42 @@
 </div>
 
 
+<!-- JavaScript code -->
 <script>
-    // Function to toggle visibility of color sliders
-    function toggleColorSliders() {
-      var slidersDiv = document.getElementById('color-sliders');
+    // Wait for the DOM content to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to toggle visibility of color sliders
+        function toggleColorSliders() {
+            var slidersDiv = document.getElementById('color-sliders');
 
-      // Toggle display property
-      if (slidersDiv.style.display === 'none') {
-        slidersDiv.style.display = 'block';
-      } else {
-        slidersDiv.style.display = 'none';
-      }
-    }
+            // Toggle display property
+            if (slidersDiv.style.display === 'none') {
+                slidersDiv.style.display = 'block';
+            } else {
+                slidersDiv.style.display = 'none';
+            }
+        }
 
-    // JavaScript function to apply adjustments
-    function applyAdjustments() {
-      var brightnessValue = document.getElementById('brightness-slider').value;
-      var contrastValue = document.getElementById('contrast-slider').value;
-      var saturationValue = document.getElementById('saturation-slider').value;
+        // JavaScript function to apply adjustments
+        function applyAdjustments() {
+            var brightnessValue = document.getElementById('brightness-slider').value;
+            var contrastValue = document.getElementById('contrast-slider').value;
+            var saturationValue = document.getElementById('saturation-slider').value;
 
-      // Apply adjustments to body
-      document.body.style.filter = 'brightness(' + brightnessValue + '%) contrast(' + contrastValue + '%) saturate(' + saturationValue + '%)';
-    }
+            // Apply adjustments to body
+            document.body.style.filter = 'brightness(' + brightnessValue + '%) contrast(' + contrastValue + '%) saturate(' + saturationValue + '%)';
+        }
 
-    // Event listener for adjust color button
-    document.getElementById('adjust-color-button').addEventListener('click', toggleColorSliders);
+        // Event listener for adjust color button
+        document.getElementById('adjust-color-button').addEventListener('click', toggleColorSliders);
 
-    // Event listeners for sliders
-    document.getElementById('brightness-slider').addEventListener('input', applyAdjustments);
-    document.getElementById('contrast-slider').addEventListener('input', applyAdjustments);
-    document.getElementById('saturation-slider').addEventListener('input', applyAdjustments);
-  </script>
+        // Event listeners for sliders
+        document.getElementById('brightness-slider').addEventListener('input', applyAdjustments);
+        document.getElementById('contrast-slider').addEventListener('input', applyAdjustments);
+        document.getElementById('saturation-slider').addEventListener('input', applyAdjustments);
+    });
+</script>
+
   <script src="js/vendor.js"></script>
 
 
